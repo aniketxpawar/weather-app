@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',height:'10vh',backgroundColor:'black',color:'white'}}>
       <div style={{display:'flex',flexDirection:'row',alignItems:'center',}}>
-      <img style={{height: '50px', marginLeft: '10px', marginRight: '10px', borderRadius: '25%' }} src={logo}/>
+      <img style={{height: '50px', marginLeft: '10px', marginRight: '10px', borderRadius: '25%' }} src={logo} alt='logo'/>
         Weather App
       </div>
       <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginRight: '20px',width:'200px'}}>
