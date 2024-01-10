@@ -1,4 +1,5 @@
 import React from 'react'
+import LeftCard from './LeftCard'
 
 const Layout = () => {
   return (
@@ -12,8 +13,10 @@ const Layout = () => {
         alignItems: 'center',
         justifyContent: 'center'
     }}>
-      <div style={{height:'70vh',minWidth: '15vw',border:'2px solid black',width:'30vw',margin: '10px 10px',borderRadius:'10px'}}></div>
-      <div style={{height:'70vh',minWidth: '40vw',border:'2px solid black',width:'60vw',margin: '10px 10px',borderRadius:'10px'}}></div>
+      <div style={{height:'70vh',minWidth: '464px',border:'2px solid black',width:'30vw',margin: '10px 10px',borderRadius:'10px'}}>
+        <LeftCard />
+      </div>
+      <div style={{height:'70vh',minWidth: '700px',border:'2px solid black',width:'60vw',margin: '10px 10px',borderRadius:'10px'}}></div>
     </div>
   )
 }
