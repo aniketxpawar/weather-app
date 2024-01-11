@@ -15,4 +15,4 @@ const getWeatherForecastWithCity = async (city) => {
     return data;
 }
 
-export { getWeatherDataWithCity };
+export { getWeatherDataWithCity, getWeatherForecastWithCity };

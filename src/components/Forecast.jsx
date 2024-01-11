@@ -1,17 +1,21 @@
 import React from "react";
+import ForecastCard from "./ForecastCard";
 
-const Forecast = () => {
+const Forecast = ({forecast}) => {
+  console.log(forecast)
   return (
-    <div class="days-forecast">
-      <h2 style={{fontSize:'1.5rem',margin:'20px 0'}}>5-Day Forecast</h2>
-      <ul class="weather-cards">
-        <li className="card">
-            <h3>11-01-2024</h3>
-            <img src="" alt="weather-icon"/>
-            <h5>Temp: </h5>
-            <h5>Wind: </h5>
-            <h5>Humidity: </h5>
-            </li>
+    <div style={{marginTop:'-20px',display:'flex',flexDirection:'column'}}>
+    <div>
+    <h2 style={{fontSize:'1.5rem'}}>5-Day Forecast</h2>
+    </div>
+      <ul style={{display:'flex',justifyContent:'space-between',marginRight:'0px',gap:'10px',padding:'0'}}>
+        {forecast?.map((record,index) => 
+        <ForecastCard key={index} dt={record?.dt} 
+          temp={(record.main.temp - 273.15).toFixed(2)}
+          speed={record?.wind.speed}
+          humidity={record.main.humidity}
+          icon={record?.weather[0]?.icon}
+        />)}
       </ul>
     </div>
   );

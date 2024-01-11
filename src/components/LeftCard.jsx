@@ -25,5 +25,6 @@ const LeftCard = ({setCity}) => {
     </div>
   )
 }
+// '#5372ef'
 
 export default LeftCard
