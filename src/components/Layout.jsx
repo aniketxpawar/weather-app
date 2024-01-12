@@ -5,7 +5,7 @@ import { getWeatherDataWithCity, getWeatherForecastWithCity } from '../api';
 import moment from 'moment';
 import toast, { Toaster } from 'react-hot-toast';
 
-const Layout = () => {
+const Layout = ({cord}) => {
   const [city,setCity] = useState('Mumbai');
   const [weatherData,setWeatherData] = useState(null)
   const [forecast,setForecast] = useState(null)
@@ -14,9 +14,9 @@ const Layout = () => {
     (async()=>{
       try{
         const response = await getWeatherDataWithCity(city);
-    console.log(response)
+    // console.log(response)
     if(response.status !== 200){
-      toast.error('Not a Valid City Name')
+      // toast.error('Not a Valid City Name')
     } 
     else{
       setWeatherData(response.data)
@@ -26,6 +26,7 @@ const Layout = () => {
         toast.error('Not a Valid City Name')
       }
     })();
+
     (async()=>{
       try{
       const response = await getWeatherForecastWithCity(city);
@@ -47,6 +48,7 @@ const Layout = () => {
         console.log(err)
       }
     })();
+
     } catch(err){
       console.log(err)
     }
@@ -69,7 +71,7 @@ const Layout = () => {
   reverseOrder={false}
 />
       <div style={{height:'70vh',minWidth: '464px',border:'2px solid black',width:'30vw',margin: '5px 5px',borderRadius:'10px'}}>
-        <LeftCard setCity={setCity}/>
+        <LeftCard setCity={setCity} cord={cord} setWeatherData={setWeatherData} setForecast={setForecast}/>
       </div>
       <div style={{height:'70vh',minWidth: '700px',border:'2px solid black',width:'60vw',margin: '5px 5px',borderRadius:'10px'}}>
         <RightCard data={weatherData} forecast={forecast}/>

@@ -1,26 +1,41 @@
 import './App.css';
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Layout from './components/Layout';
+import toast,{Toaster} from 'react-hot-toast';
 
 function App() {
+  const [toastDisplayed, setToastDisplayed] = useState(false);
+  const [cord, setCord] = useState({lat:'',lon:''});
   var options = {
     enableHighAccuracy: true,
     timeout: 5000,
     maximumAge: 0,
   };
   function success(pos) {
-    var crd = pos.coords;
-    console.log("Your current position is:");
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
+    let crd = pos.coords;
+    // console.log("Your current position is:");
+    // console.log(`Latitude : ${crd.latitude}`);
+    setCord({lat:crd.latitude, lon:crd.longitude})
+    // console.log(`Longitude: ${crd.longitude}`);
+    // console.log(`More or less ${crd.accuracy} meters.`);
   }
 
   function errors(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
+    console.log(err)
+    if (!toastDisplayed) {
+      toast(
+        'Allow Location Permission, to use Geolocation Feature!',
+        {
+          duration: 1000,
+        }
+      );
+      setToastDisplayed(true);
+    
   }
+}
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -29,23 +44,32 @@ function App() {
         .then(function (result) {
           console.log(result);
           if (result.state === "granted") {
-            //If granted then you can directly call your function here
             navigator.geolocation.getCurrentPosition(success, errors, options);
           } else if (result.state === "prompt") {
             //If prompt then the user will be asked to give permission
             navigator.geolocation.getCurrentPosition(success, errors, options);
           } else if (result.state === "denied") {
-            //If denied then you have to show instructions to enable location
+            // toast(
+            //   'Allow Location Permission, to use Geolocation Feature!',
+            //   {
+            //     duration: 3000,
+            //   }
+            // );
           }
         });
     } else {
-      console.log("Geolocation is not supported by this browser.");
+      toast.error("Geolocation is not supported by this browser.");
     }
-  });
+  },[]);
+  console.log(cord)
   return (
     <div className='App'>
+      <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
       <Header/>
-      <Layout/>
+      <Layout cord={cord}/>
       <Footer/>
     </div>
   );

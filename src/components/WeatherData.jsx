@@ -9,8 +9,8 @@ const WeatherData = ({data}) => {
   return (
   <div style={{ display: "flex", flexDirection: "row",alignItems:"center",justifyContent:"space-between",width: "55vw",
     minWidth: "600px",
-    // backgroundColor: "#5372ef",
-    backgroundColor: "#0A6EBD",
+    backgroundColor: "#5372ef",
+    // backgroundColor: "#0A6EBD",
     height: "150px",
     marginTop: "25px",
     borderRadius: "10px" }}>
