@@ -3,8 +3,7 @@ import axios from 'axios';
 
 // dotenv.config();
 //I wanted to store this env file but i was facing some unexpected issues
-const API_KEY = 'e83058a4c182a4dcb86a10de819bbff0';
-// const API_KEY = '183814157f8ec17e289c772661e697d0';
+const API_KEY = process.env.API_KEY;
 
 const getWeatherDataWithCity = async (city) => {
     const data = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`);
